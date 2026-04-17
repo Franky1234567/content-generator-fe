@@ -1,4 +1,4 @@
-# AI Content Generator — Frontend
+# AI Content Generator - Frontend
 
 Antarmuka pengguna untuk aplikasi AI Content Generator, dibangun dengan Next.js 14 dan Tailwind CSS.
 
