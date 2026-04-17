@@ -4,11 +4,11 @@ Antarmuka pengguna untuk aplikasi AI Content Generator, dibangun dengan Next.js 
 
 ## Tech Stack
 
-- **Next.js 14** — React framework dengan App Router
-- **TypeScript** — type safety
-- **Tailwind CSS** — styling
-- **React Hook Form + Zod** — form handling & validasi
-- **Axios** — HTTP client dengan interceptor auth
+- **Next.js 14** - React framework dengan App Router
+- **TypeScript** - type safety
+- **Tailwind CSS** - styling
+- **React Hook Form + Zod** - form handling & validasi
+- **Axios** - HTTP client dengan interceptor auth
 
 ## Fitur
 
@@ -17,7 +17,7 @@ Antarmuka pengguna untuk aplikasi AI Content Generator, dibangun dengan Next.js 
 - Template bawaan untuk mempercepat proses generate
 - Riwayat generasi dengan search, filter per tipe, dan pagination
 - Halaman detail riwayat: preview konten, copy, download .txt, delete
-- Responsif — mobile & desktop
+- Responsif - mobile & desktop
 
 ## Cara Menjalankan Lokal
 
