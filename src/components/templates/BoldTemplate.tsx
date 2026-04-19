@@ -131,7 +131,7 @@ export default function BoldTemplate({ data }: { data: SalesPageData }) {
                 fontSize: "28px", fontWeight: 800, letterSpacing: "-0.02em",
                 color: SLATE_DARK, lineHeight: 1.25, marginBottom: "0",
               }}>
-                {data.product_name ?? "The Product"}
+                {data.headline}
               </h2>
             </div>
             <div>
