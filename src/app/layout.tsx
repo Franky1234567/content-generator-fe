@@ -5,8 +5,8 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
 export const metadata: Metadata = {
-  title: "AI Content Generator",
-  description: "Generate AI-powered content in seconds",
+  title: "SalesCraft AI",
+  description: "Generate AI-powered sales pages in seconds",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

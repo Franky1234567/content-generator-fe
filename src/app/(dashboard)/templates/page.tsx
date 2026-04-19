@@ -7,112 +7,118 @@ interface Template {
   id: number;
   title: string;
   description: string;
-  content_type: string;
-  topic: string;
-  keywords: string;
+  product_name: string;
+  description_text: string;
+  features: string;
   target_audience: string;
-  tone: string;
-  language: string;
+  price: string;
+  usp: string;
+  style_template: string;
 }
 
 const TEMPLATES: Template[] = [
   {
     id: 1,
-    title: "Remote Work Productivity",
-    description: "Tips & strategies for staying productive while working remotely.",
-    content_type: "blog post",
-    topic: "10 Tips for Remote Work Productivity",
-    keywords: "remote work, productivity, async communication, deep work",
-    target_audience: "Startup founders & remote teams",
-    tone: "casual",
-    language: "English",
+    title: "SaaS Product",
+    description: "High-converting sales page for a software-as-a-service product.",
+    product_name: "TaskFlow Pro",
+    description_text: "TaskFlow Pro is an AI-powered project management tool that helps remote teams stay aligned, ship faster, and eliminate status meetings.",
+    features: "AI task prioritization, Real-time collaboration, Slack & GitHub integration, Time tracking, Custom dashboards, Mobile app",
+    target_audience: "Remote startup teams and project managers",
+    price: "$29 / month per team",
+    usp: "14-day free trial, No credit card required, Cancel anytime",
+    style_template: "modern",
   },
   {
     id: 2,
-    title: "Product Launch Announcement",
-    description: "Professional email announcing a new product to existing clients.",
-    content_type: "email",
-    topic: "Product Launch Announcement",
-    keywords: "new product, launch, features, benefits",
-    target_audience: "B2B clients",
-    tone: "formal",
-    language: "English",
+    title: "Physical Product",
+    description: "Persuasive sales page for a premium physical product.",
+    product_name: "ErgoDesk Pro Standing Desk",
+    description_text: "The ErgoDesk Pro is a height-adjustable standing desk engineered for professionals who demand comfort, durability, and style in their home office.",
+    features: "Electric height adjustment, Memory presets, Anti-fatigue mat included, Cable management system, 10-year warranty, Ships assembled",
+    target_audience: "Home office professionals and remote workers",
+    price: "$599 - Free shipping",
+    usp: "30-day money-back guarantee, Assembled in 10 minutes",
+    style_template: "bold",
   },
   {
     id: 3,
-    title: "Flash Sale Ad Copy",
-    description: "Urgent, persuasive ad copy for a limited-time sale campaign.",
-    content_type: "ad copy",
-    topic: "Flash Sale Campaign — Limited Time Offer",
-    keywords: "discount, limited time, sale, deal",
-    target_audience: "E-commerce shoppers",
-    tone: "persuasive",
-    language: "English",
+    title: "Online Course",
+    description: "Enrollment-focused sales page for a digital course.",
+    product_name: "Full-Stack Mastery Bootcamp",
+    description_text: "A comprehensive 12-week online program that takes you from zero to job-ready full-stack developer with hands-on projects, mentorship, and career support.",
+    features: "120+ video lessons, Live weekly Q&A sessions, 10 real-world projects, Career coaching, Private community, Lifetime access",
+    target_audience: "Career changers and aspiring developers",
+    price: "Rp 2.999.000 - One-time payment",
+    usp: "Job guarantee or money back, Learn at your own pace",
+    style_template: "modern",
   },
   {
     id: 4,
-    title: "LinkedIn Thought Leadership",
-    description: "Professional social media post to establish authority in your niche.",
-    content_type: "social media post",
-    topic: "AI Trends Reshaping the Industry in 2025",
-    keywords: "AI, technology, innovation, future of work",
-    target_audience: "LinkedIn professionals",
-    tone: "informative",
-    language: "English",
+    title: "Consulting Service",
+    description: "Authority-building sales page for a professional consulting service.",
+    product_name: "Growth Marketing Consulting",
+    description_text: "We help B2B SaaS companies scale from $1M to $10M ARR with data-driven growth strategies, paid acquisition, and retention optimization.",
+    features: "Monthly strategy sessions, Full funnel audit, A/B testing roadmap, Weekly performance reports, Slack access, Dedicated account manager",
+    target_audience: "B2B SaaS founders and marketing leaders",
+    price: "$5,000 / month",
+    usp: "Results in 90 days or refund, No long-term contract",
+    style_template: "minimal",
   },
   {
     id: 5,
-    title: "SaaS Product Description",
-    description: "Clear, benefit-focused description for a software product page.",
-    content_type: "product description",
-    topic: "AI-Powered Content Generation Tool",
-    keywords: "AI, content, automation, productivity, SaaS",
-    target_audience: "Marketing teams & content creators",
-    tone: "persuasive",
-    language: "English",
+    title: "Mobile App",
+    description: "App store-style sales page for a mobile application.",
+    product_name: "FitTrack AI - Fitness Coach",
+    description_text: "FitTrack AI is a personal fitness coach in your pocket - it builds custom workout and meal plans, tracks your progress, and adapts to your schedule.",
+    features: "AI-generated workout plans, Macro & calorie tracking, Progress photos, Apple Watch sync, 500+ exercise library, Offline mode",
+    target_audience: "Fitness enthusiasts and busy professionals",
+    price: "Rp 59.000 / month or Rp 499.000 / year",
+    usp: "7-day free trial, Used by 200,000+ users",
+    style_template: "bold",
   },
   {
     id: 6,
-    title: "Company Milestone Press Release",
-    description: "Formal press release announcing a major company achievement.",
-    content_type: "press release",
-    topic: "Company Reaches 10,000 Active Users Milestone",
-    keywords: "milestone, growth, users, achievement",
-    target_audience: "Media & journalists",
-    tone: "formal",
-    language: "English",
+    title: "E-commerce Store",
+    description: "Sales page for launching an online store or product line.",
+    product_name: "NatureCraft Skincare Collection",
+    description_text: "NatureCraft is a clean, plant-based skincare line formulated by dermatologists using sustainably sourced ingredients - effective, ethical, and affordable.",
+    features: "Dermatologist formulated, Vegan & cruelty-free, No parabens or sulfates, Sustainable packaging, Suitable for all skin types, Ships worldwide",
+    target_audience: "Eco-conscious consumers aged 25–45",
+    price: "From Rp 149.000 per product",
+    usp: "Free samples with every order, 60-day return policy",
+    style_template: "minimal",
   },
   {
     id: 7,
-    title: "Onboarding Welcome Email",
-    description: "Warm welcome email for new users to get started quickly.",
-    content_type: "email",
-    topic: "Welcome to the Platform — Getting Started Guide",
-    keywords: "welcome, onboarding, getting started, tips",
-    target_audience: "New users",
-    tone: "casual",
-    language: "English",
+    title: "Digital Download",
+    description: "Sales page for a downloadable digital product like a template or ebook.",
+    product_name: "Notion Business OS - Ultimate Template",
+    description_text: "A complete Notion workspace template system for entrepreneurs and solopreneurs - manage projects, clients, finances, and goals all in one place.",
+    features: "50+ linked Notion templates, CRM database, Finance tracker, Project management hub, Content calendar, Goal tracker, Lifetime updates",
+    target_audience: "Freelancers, solopreneurs, and small business owners",
+    price: "$47 - Instant digital download",
+    usp: "Instant delivery, Works with free Notion plan",
+    style_template: "modern",
   },
   {
     id: 8,
-    title: "Tips Investasi Saham",
-    description: "Artikel blog edukasi tentang investasi saham untuk pemula.",
-    content_type: "blog post",
-    topic: "Panduan Investasi Saham untuk Pemula",
-    keywords: "investasi, saham, pemula, finansial, portofolio",
-    target_audience: "Anak muda usia 20-30 tahun",
-    tone: "informative",
-    language: "Bahasa Indonesia",
+    title: "Membership Site",
+    description: "Sales page for a recurring membership or community.",
+    product_name: "The Founder's Inner Circle",
+    description_text: "An exclusive monthly membership for early-stage startup founders - get access to expert AMAs, peer accountability groups, investor intros, and a curated resource library.",
+    features: "Monthly live AMAs with top founders, Private Slack community, Weekly accountability groups, Investor database access, Resource library, Job board",
+    target_audience: "Early-stage startup founders (pre-seed to Series A)",
+    price: "$99 / month - Cancel anytime",
+    usp: "First month free, Backed by 500+ active founders",
+    style_template: "bold",
   },
 ];
 
-const toneColors: Record<string, string> = {
-  formal: "bg-blue-50 text-blue-600",
-  casual: "bg-green-50 text-green-600",
-  persuasive: "bg-orange-50 text-orange-600",
-  informative: "bg-sky-50 text-sky-600",
-  humorous: "bg-yellow-50 text-yellow-600",
-  inspirational: "bg-purple-50 text-purple-600",
+const styleColors: Record<string, string> = {
+  modern: "bg-indigo-50 text-indigo-600",
+  minimal: "bg-slate-50 text-slate-600",
+  bold: "bg-orange-50 text-orange-600",
 };
 
 export default function TemplatesPage() {
@@ -120,12 +126,13 @@ export default function TemplatesPage() {
 
   const useTemplate = (template: Template) => {
     const params = new URLSearchParams({
-      content_type: template.content_type,
-      topic: template.topic,
-      keywords: template.keywords,
+      product_name: template.product_name,
+      description: template.description_text,
+      features: template.features,
       target_audience: template.target_audience,
-      tone: template.tone,
-      language: template.language,
+      price: template.price,
+      usp: template.usp,
+      style_template: template.style_template,
     });
     router.push(`/dashboard?${params.toString()}`);
   };
@@ -134,7 +141,7 @@ export default function TemplatesPage() {
     <div className="max-w-5xl mx-auto">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-slate-900">Templates</h1>
-        <p className="text-slate-500 mt-1">Start from a pre-built template edit and generate in seconds.</p>
+        <p className="text-slate-500 mt-1">Start from a pre-built template  click to prefill the form and generate in seconds.</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -145,9 +152,9 @@ export default function TemplatesPage() {
             onClick={() => useTemplate(template)}
           >
             <div className="flex items-start justify-between gap-2 mb-3">
-              <ContentBadge type={template.content_type} />
-              <span className={`text-xs px-2 py-0.5 rounded-full font-medium capitalize ${toneColors[template.tone] || "bg-slate-50 text-slate-600"}`}>
-                {template.tone}
+              <ContentBadge type={template.style_template} />
+              <span className={`text-xs px-2 py-0.5 rounded-full font-medium capitalize ${styleColors[template.style_template] || "bg-slate-50 text-slate-600"}`}>
+                {template.style_template}
               </span>
             </div>
 

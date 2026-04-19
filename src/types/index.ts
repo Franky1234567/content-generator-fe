@@ -4,17 +4,31 @@ export interface User {
   email: string;
 }
 
-export interface ContentGeneration {
+export interface SalesPageData {
+  headline: string;
+  subheadline: string;
+  hook?: string;
+  overview: string;
+  benefits: { icon: string; title: string; description: string }[];
+  features: { name: string; description: string }[];
+  testimonials: { quote: string; name: string; role: string; company?: string }[];
+  pricing: { price: string; period?: string | null; includes: string[] };
+  cta_primary: string;
+  cta_secondary?: string | null;
+  urgency?: string | null;
+}
+
+export interface SalesPageGeneration {
   id: number;
   user_id: number;
-  content_type: string;
-  topic: string;
-  keywords: string | null;
+  product_name: string;
+  description: string;
+  features: string;
   target_audience: string | null;
-  tone: string;
-  language: string;
-  generated_content: string;
-  word_count: number;
+  price: string;
+  usp: string | null;
+  generated_json: string;
+  style_template: string;
   created_at: string;
   updated_at: string;
 }
@@ -27,29 +41,8 @@ export interface PaginatedResponse<T> {
   total: number;
 }
 
-export const CONTENT_TYPES = [
-  { value: "blog post", label: "Blog Post" },
-  { value: "ad copy", label: "Ad Copy" },
-  { value: "email", label: "Email" },
-  { value: "social media post", label: "Social Media Post" },
-  { value: "product description", label: "Product Description" },
-  { value: "press release", label: "Press Release" },
-];
-
-export const TONES = [
-  { value: "formal", label: "Formal" },
-  { value: "casual", label: "Casual" },
-  { value: "persuasive", label: "Persuasive" },
-  { value: "informative", label: "Informative" },
-  { value: "humorous", label: "Humorous" },
-  { value: "inspirational", label: "Inspirational" },
-];
-
-export const LANGUAGES = [
-  { value: "Bahasa Indonesia", label: "Bahasa Indonesia" },
-  { value: "English", label: "English" },
-  { value: "Malay", label: "Bahasa Melayu" },
-  { value: "Spanish", label: "Spanish" },
-  { value: "French", label: "French" },
-  { value: "Japanese", label: "Japanese" },
+export const STYLE_TEMPLATES = [
+  { value: "modern",  label: "Modern"  },
+  { value: "minimal", label: "Minimal" },
+  { value: "bold",    label: "Bold"    },
 ];

@@ -3,47 +3,48 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/axios";
-import { ContentGeneration, PaginatedResponse, CONTENT_TYPES } from "@/types";
+import { SalesPageGeneration, PaginatedResponse } from "@/types";
 import ContentBadge from "@/components/ui/ContentBadge";
+import DeleteModal from "@/components/ui/DeleteModal";
 import { formatDate } from "@/utils/format";
-
-const FILTER_TABS = [
-  { value: "", label: "All" },
-  ...CONTENT_TYPES.map((t) => ({ value: t.value, label: t.label })),
-];
 
 export default function HistoryPage() {
   const router = useRouter();
-  const [data, setData] = useState<PaginatedResponse<ContentGeneration> | null>(null);
+  const [data, setData] = useState<PaginatedResponse<SalesPageGeneration> | null>(null);
   const [search, setSearch] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState<number | null>(null);
+  const [confirmId, setConfirmId] = useState<number | null>(null);
 
   const fetchHistory = useCallback(async () => {
     setLoading(true);
     try {
       const res = await api.get("/generations", {
-        params: { search, page, type: typeFilter || undefined },
+        params: { search, page },
       });
       setData(res.data);
     } finally {
       setLoading(false);
     }
-  }, [search, page, typeFilter]);
+  }, [search, page]);
 
   useEffect(() => {
     const timer = setTimeout(fetchHistory, 300);
     return () => clearTimeout(timer);
   }, [fetchHistory]);
 
-  const handleDelete = async (e: React.MouseEvent, id: number) => {
+  const handleDeleteClick = (e: React.MouseEvent, id: number) => {
     e.stopPropagation();
-    if (!confirm("Delete this generation?")) return;
-    setDeleting(id);
+    setConfirmId(id);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!confirmId) return;
+    setDeleting(confirmId);
     try {
-      await api.delete(`/generations/${id}`);
+      await api.delete(`/generations/${confirmId}`);
+      setConfirmId(null);
       fetchHistory();
     } finally {
       setDeleting(null);
@@ -54,7 +55,7 @@ export default function HistoryPage() {
     <div className="max-w-5xl mx-auto">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Generation History</h1>
-        <p className="text-slate-500 mt-1">All your past content generations in one place.</p>
+        <p className="text-slate-500 mt-1">All your generated sales pages in one place.</p>
       </div>
 
       {/* Search */}
@@ -65,35 +66,17 @@ export default function HistoryPage() {
         <input
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-          placeholder="Search by topic or type..."
+          placeholder="Search by product name or description..."
           className="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
         />
-      </div>
-
-      {/* Filter Tabs */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {FILTER_TABS.map((tab) => (
-          <button
-            key={tab.value}
-            onClick={() => { setTypeFilter(tab.value); setPage(1); }}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              typeFilter === tab.value
-                ? "bg-indigo-600 text-white"
-                : "bg-white border border-slate-300 text-slate-600 hover:bg-slate-50"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
       </div>
 
       {/* Table */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
         {/* Table header — desktop only */}
-        <div className="hidden md:grid md:grid-cols-[160px_1fr_100px_150px_90px_80px_40px] gap-4 px-4 py-3 border-b border-slate-100 text-xs font-medium text-slate-400 uppercase tracking-wide">
-          <span>Type</span>
-          <span>Topic</span>
-          <span>Tone</span>
+        <div className="hidden md:grid md:grid-cols-[1fr_120px_160px_90px_60px_40px] gap-4 px-4 py-3 border-b border-slate-100 text-xs font-medium text-slate-400 uppercase tracking-wide">
+          <span>Product</span>
+          <span>Style</span>
           <span>Audience</span>
           <span>Date</span>
           <span></span>
@@ -111,36 +94,35 @@ export default function HistoryPage() {
             <svg className="w-10 h-10 text-slate-300 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <p className="text-slate-400 text-sm">No generations found</p>
+            <p className="text-slate-400 text-sm">No sales pages found</p>
           </div>
         ) : (
           data?.data.map((item) => (
             <div
               key={item.id}
               onClick={() => router.push(`/history/${item.id}`)}
-              className="grid grid-cols-[1fr_auto] md:grid-cols-[160px_1fr_100px_150px_90px_80px_40px] gap-4 items-center px-4 py-3 border-b border-slate-100 last:border-0 hover:bg-slate-50 cursor-pointer transition-colors"
+              className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_120px_160px_90px_60px_40px] gap-4 items-center px-4 py-3 border-b border-slate-100 last:border-0 hover:bg-slate-50 cursor-pointer transition-colors"
             >
               {/* Mobile: left col */}
               <div className="md:contents">
-                <div className="md:col-start-1">
-                  <ContentBadge type={item.content_type} />
-                </div>
-                <p className="font-medium text-slate-800 text-sm truncate mt-1 md:mt-0">{item.topic}</p>
+                <p className="font-medium text-slate-800 text-sm truncate">{item.product_name}</p>
                 <div className="flex gap-3 text-xs text-slate-400 mt-0.5 md:hidden">
-                  <span>{item.tone}</span>
+                  <span className="capitalize">{item.style_template}</span>
                   <span>{formatDate(item.created_at)}</span>
                 </div>
               </div>
 
               {/* Desktop-only cols */}
-              <span className="hidden md:block text-sm text-slate-600 capitalize">{item.tone}</span>
+              <div className="hidden md:block">
+                <ContentBadge type={item.style_template} />
+              </div>
               <span className="hidden md:block text-sm text-slate-500 truncate">{item.target_audience || "—"}</span>
               <span className="hidden md:block text-sm text-slate-400">{formatDate(item.created_at)}</span>
               <span className="hidden md:block text-sm font-medium text-indigo-600">View</span>
 
               {/* Delete — always visible */}
               <button
-                onClick={(e) => handleDelete(e, item.id)}
+                onClick={(e) => handleDeleteClick(e, item.id)}
                 disabled={deleting === item.id}
                 className="p-1.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
               >
@@ -152,6 +134,13 @@ export default function HistoryPage() {
           ))
         )}
       </div>
+
+      <DeleteModal
+        isOpen={confirmId !== null}
+        loading={deleting !== null}
+        onConfirm={handleDeleteConfirm}
+        onCancel={() => setConfirmId(null)}
+      />
 
       {/* Pagination */}
       {data && data.last_page > 1 && (
